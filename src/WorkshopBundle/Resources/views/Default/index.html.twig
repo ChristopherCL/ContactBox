@@ -1,0 +1,49 @@
+Welcome to the Project number 5.
+<form method="POST">
+    Search person by Name or Surname:
+    <input name="name" type="text" placeholder="Name or Surname"></input>
+    <input type="submit" value="search"></input>
+</form>
+
+{% if persons %}
+    {% for person in persons %}
+        <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ person.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ person.name }}</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>{{ person.surname }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ person.description }}</td>
+            </tr>
+            <tr>
+                <th>Phone numbers: </th>
+                <td>{% for phone in person.phones %}
+                        {{ phone.phoneNumber }} ({{ phone.type }}); 
+                    {% endfor %}</td>
+            </tr>
+            <tr>
+                <th>e-mails: </th>
+                <td>{% for email in person.emails %}
+                        {{ email.emailAddress }} ({{ email.emailType }}); 
+                    {% endfor %}</td>
+            </tr>
+            <tr>
+                <th>Belong to group: </th>
+                <td>{% for group in person.groups %}
+                        {{ group.groupName }}
+                    {% endfor %}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% endfor %}
+{% endif %}
